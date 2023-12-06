@@ -1,0 +1,33 @@
+/* styles/SearchBox.module.scss */
+
+.searchIcon, .searchIconSecond {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: larger;
+    background-size: cover;
+  }
+  
+  .searchIcon {
+    right: 12px;
+    visibility: visible;
+    color: #7B7B7B;
+  }
+  
+  .searchIconSecond {
+    left: 12px;
+    visibility: hidden;
+  }
+  
+  .searchBoxFocused {
+    .searchIcon {
+        visibility: hidden;
+
+    }
+  
+    .searchIconSecond {
+        visibility: visible;
+        color: #00C853;
+    }
+  }
+  
