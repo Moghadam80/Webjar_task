@@ -65,35 +65,35 @@ const Blog = () => {
         <SearchBox />
       </div>
       <div className="grid grid-cols-10 mt-20">
-        <div className="col-span-3">
-          <div className="grid grid-cols-8 gap-4 h-fit w-fit p-8 shadow-[0px_0px_30px_0px_#0000001A] rounded-l-[15px]">
+        <div className="lg:col-span-3 col-span-full">
+          <div className="grid grid-cols-8 gap-6 lg:gap-4 h-fit w-fit p-8 shadow-[0px_0px_30px_0px_#0000001A] rounded-l-[15px]">
             <p className="col-span-full text-base font-bold mb-4">دسته بندی</p>
             {uniqueCategories.map((category) => (
-              <div className="flex col-span-full">
+              <div className="flex lg:col-span-full col-span-4">
                 <p className="text-[#7B7B7B] w-48">{category}</p>
                 <CheckBox value={category} onClick={() => handleCategoryChange()}/>
               </div>
             ))}
           </div>
         </div>
-        <div className="col-span-7">
+        <div className="lg:col-span-7 col-span-full mt-8 lg:mt-0">
           {currentData?.map((blog, i) => (
             <div
               key={i}
               className="grid grid-cols-8 gap-4 mb-12 rounded-[15px] shadow-[0px_0px_30px_0px_#00C8530D]"
             >
-              <div className="col-span-3 w-fit h-fit">
+              <div className="lg:col-span-3 col-span-full w-fit h-fit">
                 <ImageComponent
                   src={`${url}${blog.path}`}
-                  className="w-[300px] h-[233px] rounded-r-[15px]"
+                  className="lg:w-[300px] w-[360px] h-[233px] rounded-r-[15px]"
                   width={0}
                   height={0}
                   key={i}
                 />
               </div>
-              <div className="col-span-5 flex flex-col p-4 pb-0">
+              <div className="lg:col-span-5 col-span-full flex flex-col p-4 pb-0">
                 <p className="mb-4 text-[16px] font-semibold">{blog.title}</p>
-                <p className="font-normal leading-7 w-[360px]">
+                <p className="font-normal leading-7 lg:w-[360px]">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
                   با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
                   مجله در ستون و سطرآنچنان که لازم است
@@ -152,7 +152,12 @@ const Blog = () => {
                     </svg>
                     <p className="mr-1">علی نسیمی</p>
                   </div>
-                  <GreenButton className="w-[157px] h-[45px]" text='بیشتر' />
+                  <GreenButton className="hidden lg:block w-[157px] h-[45px]" text='بیشتر' />
+                </div>
+                <div className="flex w-full justify-center">
+                <GreenButton className="lg:hidden w-[328px] h-[45px]" text='بیشتر' />
+
+
                 </div>
               </div>
             </div>
