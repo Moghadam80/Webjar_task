@@ -1,12 +1,12 @@
 import React from 'react'
 
-const CheckBox = () => {
+const CheckBox = ({onClick, value}) => {
   return (
     <label className="flex items-center custom-checkbox cursor-pointer">
         <input
             type="checkbox"
-            value="3"
-            // onChange={(e) => setShowInput(e.target.value)}
+            value={value}
+            onChange={(e) => onClick(e.target.value)}
         />
         <span className="helping-el mr-2"></span>
     </label>

@@ -11,7 +11,7 @@ const LoginModal = ({onClick}) => {
             <form className='flex flex-col'>
               <Input label='نام کاربری' placeholder='نام کاربری خود را وارد کنید' icon='fa fa-user' type='text' required='true'/>
               <Input label='رمز عبور' placeholder='رمز عبور خود را وارد کنید' icon='fa fa-lock' type='password' required='true'/>
-              <GreenButton type='submit'/>
+              <GreenButton text='ورود' type='submit' className='w-[270px] h-[40px]'/>
             </form>
             
         </div>

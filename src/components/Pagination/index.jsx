@@ -10,16 +10,23 @@ const theme = createTheme({
     },
   });
 
-const PaginationData = () => {
-    
+const PaginationData = ({ count, page, onChange, variant, color, shape }) => {
   return (
     <>
-    <ThemeProvider theme={theme}>
-          <Pagination dir='ltr' count={2} variant="outlined" color='secondary' shape="rounded" />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Pagination
+          dir="ltr"
+          count={count}
+          page={page}
+          onChange={onChange}
+          variant={variant}
+          color={color}
+          shape={shape}
+        />
+      </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
 export default PaginationData
 
