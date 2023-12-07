@@ -13,7 +13,7 @@ const url = 'https://file.webjar.site/'
 
 const Blog = () => {
   const { blogs, uniqueCategories } = useBlog();
-  const itemsPerPage = 2;
+  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState([]);
   
@@ -40,6 +40,7 @@ const Blog = () => {
   };
 
   const handleCategoryChange = (category) => {
+    console.log(category);
     // Toggle the selected category
     setSelectedCategories(prevCategories => {
       if (prevCategories.includes(category)) {
@@ -71,7 +72,7 @@ const Blog = () => {
             {uniqueCategories.map((category) => (
               <div className="flex lg:col-span-full col-span-4">
                 <p className="text-[#7B7B7B] w-48">{category}</p>
-                <CheckBox value={category} onClick={() => handleCategoryChange()}/>
+                <CheckBox value={category} onClick={(v) => handleCategoryChange(v)}/>
               </div>
             ))}
           </div>
