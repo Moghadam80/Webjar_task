@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Style.module.scss';
 
 
-const SearchBox = () => {
+const SearchBox = ({search}) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isInputFilled, setIsInputFilled] = useState(false);
 
@@ -24,7 +24,7 @@ const SearchBox = () => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         className={`outline-none px-6 focus:text-[#00C853] w-full h-full`}
-        onChange={(event) => setIsInputFilled(event.target.value !== '')}
+        onChange={(event) => {setIsInputFilled(event.target.value !== ''); search(event)}}
       />
       <i className={`fa fa-search  ml-4 ${styles.searchIconSecond}`}></i>
 

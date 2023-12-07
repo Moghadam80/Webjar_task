@@ -5,7 +5,6 @@ import useBlog from "@/hooks/Blog";
 import PaginationData from "@/components/Pagination";
 import CheckBox from "@/components/checkbox";
 import ImageComponent from "@/components/ImageComponent";
-import Pagination from '@mui/material/Pagination';
 import GreenButton from "@/components/GreenButton";
 
 
@@ -16,16 +15,18 @@ const Blog = () => {
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  
-  // Function to filter data based on selected categories
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Function to filter data based on selected categories and search query
   const filteredData = blogs.filter(item => {
     // If no categories are selected, show all items
-    if (selectedCategories.length === 0) {
-      return true;
-    }
-    
-    // Check if the item's category is in the selected categories
-    return selectedCategories.includes(item.category);
+    const categoryFilter = selectedCategories.length === 0 || selectedCategories.includes(item.category);
+
+    // Check if the search query matches the item's title or shortDescription
+    const searchFilter = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return categoryFilter && searchFilter;
   });
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
@@ -40,7 +41,6 @@ const Blog = () => {
   };
 
   const handleCategoryChange = (category) => {
-    console.log(category);
     // Toggle the selected category
     setSelectedCategories(prevCategories => {
       if (prevCategories.includes(category)) {
@@ -54,6 +54,13 @@ const Blog = () => {
     setCurrentPage(1);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    // Reset current page to 1 when search query changes
+    setCurrentPage(1);
+  };
+
+
   return (
     <div className="mt-6 mb-20 lg:px-[170px] px-[15px]">
       <div className="flex items-center text-base">
@@ -63,7 +70,7 @@ const Blog = () => {
       </div>
       <div className="flex justify-center mt-16 text-xl font-bold">وبلاگ</div>
       <div className="flex justify-center mt-8">
-        <SearchBox />
+        <SearchBox search={(s) => handleSearchChange(s)} />
       </div>
       <div className="grid grid-cols-10 mt-20">
         <div className="lg:col-span-3 col-span-full">
@@ -95,9 +102,7 @@ const Blog = () => {
               <div className="lg:col-span-5 col-span-full flex flex-col p-4 pb-0">
                 <p className="mb-4 text-[16px] font-semibold">{blog.title}</p>
                 <p className="font-normal leading-7 lg:w-[360px]">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-                  با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است
+                  {blog.shortDescription}
                 </p>
                 <div className="flex items-center justify-between h-full">
                   <div className="flex items-center">
